@@ -23,7 +23,7 @@ def main():
     os.makedirs("pages", exist_ok=True)
 
     # Load master list for ordering/metadata
-    with open("occupations.json") as f:
+    with open("occupations.json", encoding="utf-8") as f:
         occupations = json.load(f)
 
     processed = 0
@@ -44,7 +44,7 @@ def main():
             continue
 
         md = parse_ooh_page(html_path)
-        with open(md_path, "w") as f:
+        with open(md_path, "w", encoding="utf-8") as f:
             f.write(md)
         processed += 1
 

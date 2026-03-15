@@ -14,12 +14,12 @@ import json
 
 def main():
     # Load AI exposure scores
-    with open("scores.json") as f:
+    with open("scores.json", encoding="utf-8") as f:
         scores_list = json.load(f)
     scores = {s["slug"]: s for s in scores_list}
 
     # Load CSV stats
-    with open("occupations.csv") as f:
+    with open("occupations.csv", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         rows = list(reader)
 
@@ -44,7 +44,7 @@ def main():
 
     import os
     os.makedirs("site", exist_ok=True)
-    with open("site/data.json", "w") as f:
+    with open("site/data.json", "w", encoding="utf-8") as f:
         json.dump(data, f)
 
     print(f"Wrote {len(data)} occupations to site/data.json")

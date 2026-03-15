@@ -56,7 +56,7 @@ def parse_number(value):
 
 def extract_occupation(html_path, occ_meta):
     """Extract one row of data from an HTML file."""
-    with open(html_path) as f:
+    with open(html_path, encoding="utf-8") as f:
         soup = BeautifulSoup(f.read(), "html.parser")
 
     row = {
@@ -130,7 +130,7 @@ def extract_occupation(html_path, occ_meta):
 
 
 def main():
-    with open("occupations.json") as f:
+    with open("occupations.json", encoding="utf-8") as f:
         occupations = json.load(f)
 
     fieldnames = [

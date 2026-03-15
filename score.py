@@ -126,7 +126,7 @@ def main():
                         help="Re-score even if already cached")
     args = parser.parse_args()
 
-    with open("occupations.json") as f:
+    with open("occupations.json", encoding="utf-8") as f:
         occupations = json.load(f)
 
     subset = occupations[args.start:args.end]
@@ -134,7 +134,7 @@ def main():
     # Load existing scores
     scores = {}
     if os.path.exists(OUTPUT_FILE) and not args.force:
-        with open(OUTPUT_FILE) as f:
+        with open(OUTPUT_FILE, encoding="utf-8") as f:
             for entry in json.load(f):
                 scores[entry["slug"]] = entry
 
@@ -155,7 +155,7 @@ def main():
             print(f"  [{i+1}] SKIP {slug} (no markdown)")
             continue
 
-        with open(md_path) as f:
+        with open(md_path, encoding="utf-8") as f:
             text = f.read()
 
         print(f"  [{i+1}/{len(subset)}] {occ['title']}...", end=" ", flush=True)
@@ -173,7 +173,7 @@ def main():
             errors.append(slug)
 
         # Save after each one (incremental checkpoint)
-        with open(OUTPUT_FILE, "w") as f:
+        with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
             json.dump(list(scores.values()), f, indent=2)
 
         if i < len(subset) - 1:

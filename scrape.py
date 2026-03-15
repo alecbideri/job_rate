@@ -31,7 +31,7 @@ def main():
     args = parser.parse_args()
 
     # Load master list
-    with open("occupations.json") as f:
+    with open("occupations.json", encoding="utf-8") as f:
         occupations = json.load(f)
 
     end = args.end if args.end is not None else len(occupations)
@@ -76,7 +76,7 @@ def main():
 
                 # Save raw HTML — this is the source of truth
                 html = page.content()
-                with open(html_path, "w") as f:
+                with open(html_path, "w", encoding="utf-8") as f:
                     f.write(html)
 
                 print(f"OK ({len(html):,} bytes)")
